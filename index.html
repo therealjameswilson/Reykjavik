@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reykjavik 1986 Primary Source Workbench</title>
+    <meta name="description" content="A source-first website for primary records on Reagan and Gorbachev at Reykjavik in October 1986.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top">Reykjavik 1986</a>
+        <nav aria-label="Sections">
+          <a href="#sources">Sources</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#collections">Collections</a>
+          <a href="#harvest">Harvest</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="intro-band" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow">Primary source register</p>
+          <h1 id="page-title">Reagan and Gorbachev at Reykjavik</h1>
+          <p class="lede">
+            A working website for the known public primary-source corpus around the
+            October 11-12, 1986 Reykjavik meeting: U.S. records, Soviet-side records,
+            public statements, allied reactions, intelligence/prep items, and archive
+            leads for material that is cited but not fully digitized.
+          </p>
+          <div class="stat-row" aria-label="Source statistics">
+            <div>
+              <strong id="stat-total">0</strong>
+              <span>sources</span>
+            </div>
+            <div>
+              <strong id="stat-core">0</strong>
+              <span>core records</span>
+            </div>
+            <div>
+              <strong id="stat-repos">0</strong>
+              <span>repositories</span>
+            </div>
+          </div>
+        </div>
+        <figure class="intro-figure">
+          <img
+            src="https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/top_photo2.jpg"
+            alt="President Reagan greets General Secretary Gorbachev at Hofdi House during the Reykjavik Summit.">
+          <figcaption>Reagan Library photograph via the National Security Archive Reykjavik File.</figcaption>
+        </figure>
+      </section>
+
+      <section class="control-band" aria-label="Source filters">
+        <div class="search-shell">
+          <label for="source-search">Search sources</label>
+          <input id="source-search" type="search" autocomplete="off" placeholder="Search title, repository, person, theme">
+        </div>
+
+        <div class="filter-grid">
+          <div class="filter-group" aria-label="Priority filter">
+            <span>Priority</span>
+            <div id="priority-filters" class="button-row"></div>
+          </div>
+          <div class="filter-group" aria-label="Phase filter">
+            <span>Phase</span>
+            <div id="phase-filters" class="button-row"></div>
+          </div>
+          <div class="filter-group" aria-label="Side filter">
+            <span>Side</span>
+            <div id="side-filters" class="button-row"></div>
+          </div>
+          <div class="filter-group" aria-label="Sort">
+            <span>Sort</span>
+            <select id="sort-select">
+              <option value="date">Date</option>
+              <option value="repository">Repository</option>
+              <option value="priority">Priority</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="export-row">
+          <button id="reset-filters" type="button">Reset</button>
+          <button id="copy-links" type="button">Copy links</button>
+          <button id="export-csv" type="button">Export CSV</button>
+          <span id="result-count" role="status" aria-live="polite">0 sources shown</span>
+        </div>
+      </section>
+
+      <section id="sources" class="source-section" aria-labelledby="sources-title">
+        <div class="section-heading">
+          <p class="eyebrow">Register</p>
+          <h2 id="sources-title">Source Cards</h2>
+        </div>
+        <div id="source-list" class="source-list"></div>
+      </section>
+
+      <section id="timeline" class="timeline-section" aria-labelledby="timeline-title">
+        <div class="section-heading">
+          <p class="eyebrow">Chronology</p>
+          <h2 id="timeline-title">Core Timeline</h2>
+        </div>
+        <div id="timeline-list" class="timeline-list"></div>
+      </section>
+
+      <section id="collections" class="collection-section" aria-labelledby="collections-title">
+        <div class="section-heading">
+          <p class="eyebrow">Coverage</p>
+          <h2 id="collections-title">Collection Map</h2>
+        </div>
+        <div id="collection-map" class="collection-map"></div>
+      </section>
+
+      <section id="harvest" class="harvest-section" aria-labelledby="harvest-title">
+        <div class="section-heading">
+          <p class="eyebrow">Next archive pass</p>
+          <h2 id="harvest-title">Harvest Queue</h2>
+        </div>
+        <ol class="harvest-list">
+          <li>Pull folder-level Reagan Library material from the Reykjavik Topic Guide, especially WHORM FO006-11 and NSC summit planning files.</li>
+          <li>Check whether Gorbachev Foundation, RGANI, GARF, or Library of Congress Volkogonov originals have digitized versions beyond the National Security Archive translations.</li>
+          <li>Separate duplicate final-session memcons: FRUS Document 308, Reagan Library PDF release, NSArchive Document 15, and Thatcher Foundation second-version copy.</li>
+          <li>Add full-text excerpts only after rights and source-edition status are checked; the present build favors links, provenance, and concise summaries.</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built as a source-first research surface. Public online records are linked directly; archive leads are flagged when they are finding aids or folder trails.</p>
+    </footer>
+
+    <script src="sources.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
