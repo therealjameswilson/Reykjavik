@@ -46,6 +46,7 @@ function sourceHaystack(source) {
     source.type,
     source.repository,
     source.collection,
+    source.url,
     source.summary
   ].join(" ");
 }
@@ -206,10 +207,10 @@ function renderCollections() {
 
 function collectionSummary(label) {
   const summaries = {
-    "U.S. official records": "FRUS, Reagan Library, CIA, and White House records for preparation, session transcripts, and follow-up.",
+    "U.S. official records": "FRUS/history.state.gov records first; Reagan Library, CIA, and White House records only when they add non-FRUS material.",
     "Soviet-side records": "UN-circulated Soviet statements, FBIS/Russian transcripts, Politburo notes, and Chernyaev-linked records.",
     "Bilateral meeting records": "Session records where the U.S. and Soviet records can be compared or used together.",
-    "Archive leads and media": "Finding aids, alternate hosted copies, videos, and visual material for deeper harvesting."
+    "Archive leads and media": "Finding aids, collection portals, videos, and visual material for deeper harvesting."
   };
   return summaries[label];
 }

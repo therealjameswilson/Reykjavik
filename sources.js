@@ -413,20 +413,7 @@ window.REYKJAVIK_SOURCES = [
     repository: "National Security Archive",
     collection: "Electronic Briefing Book No. 203",
     url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/index.htm",
-    summary: "The most compact public side-by-side set of U.S. and Soviet summit records, including PDFs for prep, transcripts, Politburo notes, and aftermath."
-  },
-  {
-    id: "nsa203-doc01",
-    title: "Gorbachev letter to Reagan, unofficial translation with Russian original",
-    date: "1986-09-15",
-    phase: "Road",
-    side: "Soviet",
-    priority: "Core",
-    type: "letter",
-    repository: "National Security Archive",
-    collection: "Reykjavik File, Document 1",
-    url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document01.pdf",
-    summary: "PDF release of the summit invitation letter, including Reagan's markings and the signed Russian original."
+    summary: "Compact public side-by-side collection. Individual U.S. documents reproduced in FRUS are represented in this workbench by their history.state.gov records."
   },
   {
     id: "nsa203-doc02",
@@ -453,19 +440,6 @@ window.REYKJAVIK_SOURCES = [
     collection: "Reykjavik File, Document 3",
     url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document03.pdf",
     summary: "Gorbachev stresses the active, initiative-driven Soviet position being prepared for Reykjavik."
-  },
-  {
-    id: "nsa203-doc04",
-    title: "Shultz memorandum to Reagan: Subject Reykjavik",
-    date: "1986-10-02",
-    phase: "Road",
-    side: "US",
-    priority: "Context",
-    type: "memorandum",
-    repository: "National Security Archive",
-    collection: "Reykjavik File, Document 4",
-    url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document04.pdf",
-    summary: "PDF version of Shultz's pre-summit briefing, showing U.S. expectations for a preparatory rather than conclusive meeting."
   },
   {
     id: "nsa203-doc05",
@@ -520,19 +494,6 @@ window.REYKJAVIK_SOURCES = [
     summary: "Final Soviet leadership review before departure, including proposals on INF, ABM, and strategic arms."
   },
   {
-    id: "nsa203-doc09",
-    title: "U.S. transcript: Reagan-Gorbachev first meeting",
-    date: "1986-10-11",
-    phase: "Summit",
-    side: "US",
-    priority: "Core",
-    type: "meeting transcript",
-    repository: "National Security Archive",
-    collection: "Reykjavik File, Document 9",
-    url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document09.pdf",
-    summary: "PDF of the U.S. first-session memorandum of conversation."
-  },
-  {
     id: "nsa203-doc10",
     title: "Russian transcript: Reykjavik morning session, October 11",
     date: "1986-10-11",
@@ -544,19 +505,6 @@ window.REYKJAVIK_SOURCES = [
     collection: "Reykjavik File, Document 10",
     url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document10.pdf",
     summary: "FBIS translation of the Russian transcript for the first leader session."
-  },
-  {
-    id: "nsa203-doc11",
-    title: "U.S. transcript: Reagan-Gorbachev second meeting",
-    date: "1986-10-11",
-    phase: "Summit",
-    side: "US",
-    priority: "Core",
-    type: "meeting transcript",
-    repository: "National Security Archive",
-    collection: "Reykjavik File, Document 11",
-    url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document11.pdf",
-    summary: "PDF of the U.S. second-session memorandum of conversation."
   },
   {
     id: "nsa203-doc12",
@@ -572,19 +520,6 @@ window.REYKJAVIK_SOURCES = [
     summary: "FBIS translation of the Russian transcript for the second leader session."
   },
   {
-    id: "nsa203-doc13",
-    title: "U.S. transcript: Reagan-Gorbachev third meeting",
-    date: "1986-10-12",
-    phase: "Summit",
-    side: "US",
-    priority: "Core",
-    type: "meeting transcript",
-    repository: "National Security Archive",
-    collection: "Reykjavik File, Document 13",
-    url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document13.pdf",
-    summary: "PDF of the U.S. Sunday morning memorandum of conversation."
-  },
-  {
     id: "nsa203-doc14",
     title: "Russian transcript: Reykjavik morning session, October 12",
     date: "1986-10-12",
@@ -596,19 +531,6 @@ window.REYKJAVIK_SOURCES = [
     collection: "Reykjavik File, Document 14",
     url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document14.pdf",
     summary: "FBIS translation of the Russian transcript for the third leader session."
-  },
-  {
-    id: "nsa203-doc15",
-    title: "U.S. transcript: Reagan-Gorbachev final meeting",
-    date: "1986-10-12",
-    phase: "Summit",
-    side: "US",
-    priority: "Core",
-    type: "meeting transcript",
-    repository: "National Security Archive",
-    collection: "Reykjavik File, Document 15",
-    url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document15.pdf",
-    summary: "PDF of the U.S. final-session memorandum of conversation."
   },
   {
     id: "nsa203-doc16",
@@ -661,19 +583,6 @@ window.REYKJAVIK_SOURCES = [
     collection: "Reykjavik File, Document 19",
     url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document19.pdf",
     summary: "Chernyaev's notes of Gorbachev's positive assessment while returning from Iceland."
-  },
-  {
-    id: "nsa203-doc20",
-    title: "Iceland Chronology",
-    date: "1986-10-14",
-    phase: "Aftermath",
-    side: "US",
-    priority: "Core",
-    type: "chronology",
-    repository: "National Security Archive",
-    collection: "Reykjavik File, Document 20",
-    url: "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB203/Document20.pdf",
-    summary: "Blow-by-blow U.S. chronology of the trip, logistics, briefings, and meetings."
   },
   {
     id: "nsa203-doc21",
@@ -936,19 +845,6 @@ window.REYKJAVIK_SOURCES = [
     summary: "Archive description for FO006-11 and related Gorbachev/USSR summit file categories."
   },
   {
-    id: "reagan-final-memcon-pdf",
-    title: "Reagan Library PDF release of final Reykjavik memorandum",
-    date: "1986-10-16",
-    phase: "Summit",
-    side: "US",
-    priority: "Core",
-    type: "memorandum of conversation",
-    repository: "Reagan Library",
-    collection: "Public documents",
-    url: "https://www.reaganlibrary.gov/public/documents/reykjavik-memorandum.pdf",
-    summary: "Standalone Reagan Library PDF of the final October 12 memorandum of conversation."
-  },
-  {
     id: "reagan-foundation-video",
     title: "Reagan Foundation video: Reykjavik Summit with Gorbachev",
     date: "1986-10-11",
@@ -973,58 +869,6 @@ window.REYKJAVIK_SOURCES = [
     collection: "1986 Reykjavik summit",
     url: "https://commons.wikimedia.org/wiki/Category:1986_Reykjav%C3%ADk_summit",
     summary: "Photographs and video files, many sourced to NARA, DPLA, and Reagan Library records."
-  },
-  {
-    id: "thatcher-109178",
-    title: "Thatcher Foundation copy: Reykjavik second session",
-    date: "1986-10-11",
-    phase: "Summit",
-    side: "US",
-    priority: "Lead",
-    type: "declassified document",
-    repository: "Margaret Thatcher Foundation",
-    collection: "Reagan Library copy",
-    url: "https://archive.margaretthatcher.org/doc01/5BF7FBE23FE946CC8875411A26F0DD44.pdf",
-    summary: "Alternate hosted copy of the October 11 second-session U.S. record."
-  },
-  {
-    id: "thatcher-109179",
-    title: "Thatcher Foundation copy: Reykjavik third session",
-    date: "1986-10-12",
-    phase: "Summit",
-    side: "US",
-    priority: "Lead",
-    type: "declassified document",
-    repository: "Margaret Thatcher Foundation",
-    collection: "Reagan Library copy",
-    url: "https://archive.margaretthatcher.org/doc02/8518B9ECB2684D11B1E87A87E23A5346.pdf",
-    summary: "Alternate hosted copy of the October 12 third-session U.S. record."
-  },
-  {
-    id: "thatcher-109180",
-    title: "Thatcher Foundation copy: Reykjavik fourth session, crucial version",
-    date: "1986-10-12",
-    phase: "Summit",
-    side: "US",
-    priority: "Lead",
-    type: "declassified document",
-    repository: "Margaret Thatcher Foundation",
-    collection: "Reagan Library copy",
-    url: "https://archive.margaretthatcher.org/doc02/BB9A1D514E7D4F45B5C5BF9298BEC6FD.pdf",
-    summary: "Alternate hosted copy of the final-session U.S. record."
-  },
-  {
-    id: "thatcher-110621",
-    title: "Thatcher Foundation copy: Reykjavik fourth session, second version",
-    date: "1986-10-12",
-    phase: "Summit",
-    side: "US",
-    priority: "Lead",
-    type: "declassified document",
-    repository: "Margaret Thatcher Foundation",
-    collection: "Reagan Library copy",
-    url: "https://www.margaretthatcher.org/document/110621",
-    summary: "Second version of the final-session memorandum, useful for comparing U.S. sensitivity over later interpretation."
   },
   {
     id: "thatcher-143887",

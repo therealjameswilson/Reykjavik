@@ -19,4 +19,4 @@ Then open `http://localhost:4173`.
 
 ## Coverage Note
 
-The register includes public online primary sources and finding-aid leads. It does not claim that every undigitized folder in the Reagan Library, TNA, Gorbachev Foundation, RGANI, GARF, Library of Congress, or State Department holdings has been harvested into the site yet.
+The register includes public online primary sources and finding-aid leads. When a document is reproduced in FRUS, the visible card defers to the history.state.gov record rather than listing duplicate National Security Archive, Reagan Library, or Thatcher-hosted copies as separate sources. The site does not claim that every undigitized folder in the Reagan Library, TNA, Gorbachev Foundation, RGANI, GARF, Library of Congress, or State Department holdings has been harvested yet.
