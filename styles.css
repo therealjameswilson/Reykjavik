@@ -449,6 +449,235 @@ h3 {
   border-top: 4px solid var(--blue);
 }
 
+.negotiator-section {
+  margin-top: 30px;
+}
+
+.negotiator-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.34fr);
+  gap: 18px;
+}
+
+.connection-board,
+.principal-panel,
+.photo-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(23, 25, 31, 0.06);
+}
+
+.connection-board {
+  padding: 18px;
+}
+
+.connection-header {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.26fr) minmax(0, 1fr) minmax(120px, 0.26fr);
+  gap: 14px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.connection-header span:last-child {
+  grid-column: 3;
+  text-align: right;
+}
+
+.connection-lanes {
+  display: grid;
+  gap: 12px;
+}
+
+.connection-lane {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.26fr) minmax(0, 1fr) minmax(120px, 0.26fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.connection-node,
+.connection-bridge {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfbf8;
+}
+
+.connection-node {
+  display: grid;
+  align-content: center;
+  min-height: 122px;
+  padding: 14px;
+}
+
+.connection-node span,
+.principal-card span,
+.photo-card span {
+  color: var(--red);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.connection-node strong {
+  margin-top: 6px;
+  font-size: 1.06rem;
+  line-height: 1.14;
+}
+
+.connection-node-soviet {
+  text-align: right;
+}
+
+.connection-bridge {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  min-height: 122px;
+  padding: 14px 18px;
+  overflow: hidden;
+}
+
+.connection-bridge::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  right: 18px;
+  left: 18px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--red));
+  opacity: 0.22;
+}
+
+.connection-bridge > span {
+  position: relative;
+  width: fit-content;
+  background: #fbfbf8;
+  color: var(--blue);
+  padding-right: 10px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.connection-bridge p {
+  position: relative;
+  margin: 0;
+  color: var(--muted);
+}
+
+.principal-panel {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px;
+}
+
+.principal-panel h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+}
+
+.principal-list {
+  display: grid;
+  gap: 10px;
+}
+
+.principal-card {
+  display: grid;
+  gap: 7px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  background: #fbfbf8;
+}
+
+.principal-card:nth-child(n+3) {
+  border-left-color: var(--red);
+}
+
+.principal-card h4 {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.15;
+}
+
+.principal-card strong {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.principal-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.photo-card {
+  display: grid;
+  overflow: hidden;
+}
+
+.photo-card a {
+  display: block;
+  background: var(--charcoal);
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.photo-card > div {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.photo-card h3 {
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+.photo-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.photo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.photo-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 23px;
+  border-radius: 999px;
+  background: #eef0f4;
+  color: #424a56;
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
 .source-list {
   display: grid;
   gap: 14px;
@@ -610,9 +839,11 @@ footer {
   .intro-band,
   .filter-grid,
   .hofdi-grid,
+  .negotiator-grid,
   .source-card,
   .timeline-item,
   .hofdi-workstreams,
+  .photo-strip,
   .collection-map {
     grid-template-columns: 1fr;
   }
@@ -628,6 +859,20 @@ footer {
   .export-row span {
     width: 100%;
     margin-left: 0;
+  }
+
+  .connection-header {
+    display: none;
+  }
+
+  .connection-lane {
+    grid-template-columns: 1fr;
+  }
+
+  .connection-node,
+  .connection-node-soviet {
+    min-height: 0;
+    text-align: left;
   }
 }
 

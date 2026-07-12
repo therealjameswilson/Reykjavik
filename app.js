@@ -23,6 +23,9 @@ const els = {
   list: document.getElementById("source-list"),
   hofdiSessions: document.getElementById("hofdi-sessions"),
   hofdiWorkstreams: document.getElementById("hofdi-workstreams"),
+  negotiatorConnections: document.getElementById("negotiator-connections"),
+  principals: document.getElementById("principal-list"),
+  hofdiPhotos: document.getElementById("hofdi-photos"),
   timeline: document.getElementById("timeline-list"),
   collections: document.getElementById("collection-map"),
   resetFilters: document.getElementById("reset-filters"),
@@ -78,6 +81,107 @@ const hofdiWorkstreams = [
     label: "Media and Site Evidence",
     ids: ["reagan-photo-gorbachev-summits", "reagan-whtv-027-gorbachev-greeting"],
     note: "The Reagan Library photo and video records anchor the physical setting and arrival sequence at Hofdi House."
+  }
+];
+
+const principalPeople = [
+  {
+    name: "Ronald Reagan",
+    side: "U.S.",
+    role: "President",
+    note: "Leader-channel principal for the four Hofdi House sessions.",
+    ids: ["frus-v-d301", "frus-v-d302", "frus-v-d306", "frus-v-d308"]
+  },
+  {
+    name: "George Shultz",
+    side: "U.S.",
+    role: "Secretary of State",
+    note: "Foreign-minister channel and Sunday drafting room participant.",
+    ids: ["frus-v-d283", "frus-v-d307", "frus-xi-d163"]
+  },
+  {
+    name: "Mikhail Gorbachev",
+    side: "Soviet",
+    role: "General Secretary",
+    note: "Soviet leader-channel principal across the Hofdi sessions and transcripts.",
+    ids: ["nsa203-doc10", "nsa203-doc12", "nsa203-doc14", "nsa203-doc16"]
+  },
+  {
+    name: "Eduard Shevardnadze",
+    side: "Soviet",
+    role: "Foreign Minister",
+    note: "Foreign-minister channel counterpart to Shultz before, during, and after Hofdi.",
+    ids: ["frus-v-d283", "frus-v-d307", "frus-vi-d6"]
+  }
+];
+
+const negotiatorConnections = [
+  {
+    label: "Leader Channel",
+    us: "Reagan",
+    soviet: "Gorbachev",
+    note: "The main bilateral record: four Hofdi leader sessions, with U.S. FRUS records and Russian transcript counterparts.",
+    ids: ["frus-v-d301", "frus-v-d302", "frus-v-d306", "frus-v-d308", "nsa203-doc10", "nsa203-doc12", "nsa203-doc14", "nsa203-doc16"]
+  },
+  {
+    label: "Foreign-Minister Channel",
+    us: "Shultz",
+    soviet: "Shevardnadze",
+    note: "The practical drafting and follow-up channel linking the September preparatory meetings, the Sunday drafting session, and Vienna.",
+    ids: ["frus-v-d283", "frus-v-d291", "frus-v-d292", "frus-v-d307", "frus-xi-d163", "frus-vi-d6"]
+  },
+  {
+    label: "Arms-Control Experts",
+    us: "Nitze / Hill / Kampelman",
+    soviet: "Akhromeyev / Soviet military team",
+    note: "The overnight lane where military and arms-control experts converted the leader package into text.",
+    ids: ["frus-xi-d159", "frus-xi-d160", "nsa203-doc17"]
+  },
+  {
+    label: "Room and Record Support",
+    us: "Matlock / U.S. interpreters",
+    soviet: "Soviet interpreters",
+    note: "The visible support layer in the Hofdi photo run: interpreters and note-takers made the leader-channel comparison possible.",
+    ids: ["reagan-photo-gorbachev-summits", "reagan-whtv-027-gorbachev-greeting"]
+  }
+];
+
+const hofdiPhotos = [
+  {
+    code: "C37412-24",
+    date: "Oct. 11, 1986",
+    src: "https://www.reaganlibrary.gov/public/archives/photographs/thumbnails/c37412-24.jpg",
+    title: "Four-principal Hofdi table",
+    caption: "Reagan and Gorbachev meet at Hofdi House with George Shultz, Eduard Shevardnadze, Jack Matlock, and Dmitry Zarechnak.",
+    tags: ["Reagan", "Shultz", "Gorbachev", "Shevardnadze"],
+    source: "reagan-photo-gorbachev-summits"
+  },
+  {
+    code: "C37408-16A",
+    date: "Oct. 11, 1986",
+    src: "https://www.reaganlibrary.gov/public/archives/photographs/thumbnails/c37408-16a.jpg",
+    title: "Leader meeting with interpreter support",
+    caption: "Reagan and Gorbachev meet at Hofdi House with Jack Matlock and Dmitry Zarechnak.",
+    tags: ["Reagan", "Gorbachev", "Matlock"],
+    source: "reagan-photo-gorbachev-summits"
+  },
+  {
+    code: "C37418-7",
+    date: "Oct. 12, 1986",
+    src: "https://www.reaganlibrary.gov/public/archives/photographs/thumbnails/c37418-7.jpg",
+    title: "U.S. staff briefing inside Hofdi",
+    caption: "Reagan briefs with Ken Adelman, George Shultz, Donald Regan, Robert Linhard, Paul Nitze, and John Poindexter.",
+    tags: ["Reagan", "Shultz", "Nitze", "Poindexter"],
+    source: "reagan-photo-gorbachev-summits"
+  },
+  {
+    code: "C37435-18",
+    date: "Oct. 12, 1986",
+    src: "https://www.reaganlibrary.gov/public/archives/photographs/thumbnails/c37435-18.jpg",
+    title: "Second-day Hofdi greeting",
+    caption: "Reagan greets Gorbachev at Hofdi House before the final day of the Reykjavik Summit.",
+    tags: ["Reagan", "Gorbachev"],
+    source: "reagan-photo-gorbachev-summits"
   }
 ];
 
@@ -296,12 +400,85 @@ function renderHofdi() {
   );
 }
 
+function renderNegotiators() {
+  if (!els.negotiatorConnections || !els.principals || !els.hofdiPhotos) return;
+
+  els.negotiatorConnections.replaceChildren(
+    ...negotiatorConnections.map((connection) => {
+      const row = document.createElement("article");
+      row.className = "connection-lane";
+      row.innerHTML = `
+        <div class="connection-node connection-node-us">
+          <span>U.S.</span>
+          <strong>${escapeHtml(connection.us)}</strong>
+        </div>
+        <div class="connection-bridge">
+          <span>${escapeHtml(connection.label)}</span>
+          <p>${escapeHtml(connection.note)}</p>
+          <div class="hofdi-link-row">
+            ${connection.ids.map((id) => sourceLink(id, compactSourceLabel(id))).join("")}
+          </div>
+        </div>
+        <div class="connection-node connection-node-soviet">
+          <span>Soviet</span>
+          <strong>${escapeHtml(connection.soviet)}</strong>
+        </div>
+      `;
+      return row;
+    })
+  );
+
+  els.principals.replaceChildren(
+    ...principalPeople.map((person) => {
+      const card = document.createElement("article");
+      card.className = "principal-card";
+      card.innerHTML = `
+        <span>${escapeHtml(person.side)}</span>
+        <h4>${escapeHtml(person.name)}</h4>
+        <strong>${escapeHtml(person.role)}</strong>
+        <p>${escapeHtml(person.note)}</p>
+        <div class="hofdi-link-row">
+          ${person.ids.map((id) => sourceLink(id, compactSourceLabel(id))).join("")}
+        </div>
+      `;
+      return card;
+    })
+  );
+
+  els.hofdiPhotos.replaceChildren(
+    ...hofdiPhotos.map((photo) => {
+      const card = document.createElement("article");
+      card.className = "photo-card";
+      card.innerHTML = `
+        <a href="${escapeAttribute(sourceIndex.get(photo.source)?.url || photo.src)}" target="_blank" rel="noreferrer">
+          <img src="${escapeAttribute(photo.src)}" alt="${escapeAttribute(photo.caption)}" loading="lazy">
+        </a>
+        <div>
+          <span>${escapeHtml(photo.code)} / ${escapeHtml(photo.date)}</span>
+          <h3>${escapeHtml(photo.title)}</h3>
+          <p>${escapeHtml(photo.caption)}</p>
+          <div class="photo-tags">
+            ${photo.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+          </div>
+        </div>
+      `;
+      return card;
+    })
+  );
+}
+
 function sourceLink(id, label) {
   const source = sourceIndex.get(id);
   if (!source) {
     return `<span class="source-missing">${escapeHtml(label)}</span>`;
   }
   return `<a href="${escapeAttribute(source.url)}" target="_blank" rel="noreferrer" title="${escapeAttribute(source.title)}">${escapeHtml(label)}</a>`;
+}
+
+function compactSourceLabel(id) {
+  const source = sourceIndex.get(id);
+  if (!source) return "Source";
+  return source.collection.replace("FRUS ", "").replace("Document ", "Doc. ");
 }
 
 function collectionSummary(label) {
@@ -407,6 +584,7 @@ els.exportCsv.addEventListener("click", () => exportCsv(filteredSources()));
 
 renderStats();
 renderHofdi();
+renderNegotiators();
 renderTimeline();
 renderCollections();
 render();

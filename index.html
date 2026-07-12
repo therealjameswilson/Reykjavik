@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Reykjavik 1986 Primary Source Workbench</title>
     <meta name="description" content="A source-first website for primary records on Reagan and Gorbachev at Reykjavik in October 1986.">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260712-negotiator-photos">
   </head>
   <body>
     <header class="site-header">
@@ -13,6 +13,7 @@
         <a class="brand" href="#top">Reykjavik 1986</a>
         <nav aria-label="Sections">
           <a href="#hofdi">Hofdi</a>
+          <a href="#negotiators">Negotiators</a>
           <a href="#sources">Sources</a>
           <a href="#timeline">Timeline</a>
           <a href="#collections">Collections</a>
@@ -78,6 +79,33 @@
         </div>
 
         <div id="hofdi-workstreams" class="hofdi-workstreams" aria-label="Hofdi working groups and media links"></div>
+
+        <section id="negotiators" class="negotiator-section" aria-labelledby="negotiators-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">People and evidence</p>
+              <h2 id="negotiators-title">Negotiator Connections</h2>
+            </div>
+            <a class="section-link" href="https://www.reaganlibrary.gov/archives/audiovisual/white-house-photo-collection-galleries/summits-mikhail-gorbachev" target="_blank" rel="noreferrer">Photo gallery</a>
+          </div>
+
+          <div class="negotiator-grid">
+            <div class="connection-board">
+              <div class="connection-header" aria-hidden="true">
+                <span>U.S. negotiators</span>
+                <span>Soviet negotiators</span>
+              </div>
+              <div id="negotiator-connections" class="connection-lanes"></div>
+            </div>
+
+            <aside class="principal-panel" aria-label="Principal negotiators">
+              <h3>Principal Set</h3>
+              <div id="principal-list" class="principal-list"></div>
+            </aside>
+          </div>
+
+          <div id="hofdi-photos" class="photo-strip" aria-label="Reagan Library Hofdi photographs"></div>
+        </section>
       </section>
 
       <section class="control-band" aria-label="Source filters">
@@ -162,7 +190,7 @@
       <p>Built as a source-first research surface. Public online records are linked directly; archive leads are flagged when they are finding aids or folder trails.</p>
     </footer>
 
-    <script src="sources.js?v=20260712-hofdi-visuals"></script>
-    <script src="app.js?v=20260712-hofdi-visuals"></script>
+    <script src="sources.js?v=20260712-negotiator-photos"></script>
+    <script src="app.js?v=20260712-negotiator-photos"></script>
   </body>
 </html>
