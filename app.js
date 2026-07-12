@@ -21,12 +21,65 @@ const els = {
   sort: document.getElementById("sort-select"),
   count: document.getElementById("result-count"),
   list: document.getElementById("source-list"),
+  hofdiSessions: document.getElementById("hofdi-sessions"),
+  hofdiWorkstreams: document.getElementById("hofdi-workstreams"),
   timeline: document.getElementById("timeline-list"),
   collections: document.getElementById("collection-map"),
   resetFilters: document.getElementById("reset-filters"),
   copyLinks: document.getElementById("copy-links"),
   exportCsv: document.getElementById("export-csv")
 };
+
+const sourceIndex = new Map(sources.map((source) => [source.id, source]));
+
+const hofdiSessions = [
+  {
+    label: "Session I",
+    time: "Oct 11 morning",
+    theme: "Opening positions, agenda, and first package proposals.",
+    us: "frus-v-d301",
+    soviet: "nsa203-doc10"
+  },
+  {
+    label: "Session II",
+    time: "Oct 11 afternoon",
+    theme: "Arms control moves to the center of the summit.",
+    us: "frus-v-d302",
+    soviet: "nsa203-doc12"
+  },
+  {
+    label: "Session III",
+    time: "Oct 12 morning",
+    theme: "Near-agreement on reductions, with SDI and ABM terms tightening.",
+    us: "frus-v-d306",
+    soviet: "nsa203-doc14"
+  },
+  {
+    label: "Final Session",
+    time: "Oct 12 afternoon",
+    theme: "The summit closes over the laboratory-testing and SDI dispute.",
+    us: "frus-v-d308",
+    soviet: "nsa203-doc16"
+  }
+];
+
+const hofdiWorkstreams = [
+  {
+    label: "Overnight Arms-Control Work",
+    ids: ["frus-xi-d159", "frus-xi-d160", "nsa203-doc17"],
+    note: "Nitze, Akhromeyev, Hill, and the military experts worked through the overnight negotiating text."
+  },
+  {
+    label: "Non-Arms-Control Channel",
+    ids: ["frus-v-d303", "frus-v-d304"],
+    note: "Separate working-group records track regional, bilateral, and human-rights issues during the same Hofdi interval."
+  },
+  {
+    label: "Media and Site Evidence",
+    ids: ["reagan-photo-gorbachev-summits", "reagan-whtv-027-gorbachev-greeting"],
+    note: "The Reagan Library photo and video records anchor the physical setting and arrival sequence at Hofdi House."
+  }
+];
 
 function unique(values) {
   return [...new Set(values)].sort((a, b) => a.localeCompare(b));
@@ -205,6 +258,52 @@ function renderCollections() {
   );
 }
 
+function renderHofdi() {
+  if (!els.hofdiSessions || !els.hofdiWorkstreams) return;
+
+  els.hofdiSessions.replaceChildren(
+    ...hofdiSessions.map((session) => {
+      const block = document.createElement("article");
+      block.className = "hofdi-session";
+      block.innerHTML = `
+        <div>
+          <span>${escapeHtml(session.time)}</span>
+          <h4>${escapeHtml(session.label)}</h4>
+          <p>${escapeHtml(session.theme)}</p>
+        </div>
+        <div class="hofdi-link-row">
+          ${sourceLink(session.us, "U.S. record")}
+          ${sourceLink(session.soviet, "Russian transcript")}
+        </div>
+      `;
+      return block;
+    })
+  );
+
+  els.hofdiWorkstreams.replaceChildren(
+    ...hofdiWorkstreams.map((workstream) => {
+      const block = document.createElement("article");
+      block.className = "hofdi-workstream";
+      block.innerHTML = `
+        <h3>${escapeHtml(workstream.label)}</h3>
+        <p>${escapeHtml(workstream.note)}</p>
+        <div class="hofdi-link-row">
+          ${workstream.ids.map((id) => sourceLink(id, sourceIndex.get(id)?.collection || "Source")).join("")}
+        </div>
+      `;
+      return block;
+    })
+  );
+}
+
+function sourceLink(id, label) {
+  const source = sourceIndex.get(id);
+  if (!source) {
+    return `<span class="source-missing">${escapeHtml(label)}</span>`;
+  }
+  return `<a href="${escapeAttribute(source.url)}" target="_blank" rel="noreferrer" title="${escapeAttribute(source.title)}">${escapeHtml(label)}</a>`;
+}
+
 function collectionSummary(label) {
   const summaries = {
     "U.S. official records": "FRUS/history.state.gov records first; Reagan Library, CIA, and White House records only when they add non-FRUS material.",
@@ -307,6 +406,7 @@ els.copyLinks.addEventListener("click", async () => {
 els.exportCsv.addEventListener("click", () => exportCsv(filteredSources()));
 
 renderStats();
+renderHofdi();
 renderTimeline();
 renderCollections();
 render();

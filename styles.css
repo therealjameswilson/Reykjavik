@@ -79,6 +79,19 @@ nav a:hover {
   color: var(--ink);
 }
 
+.section-link {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--ink);
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 main {
   max-width: 1260px;
   margin: 0 auto;
@@ -302,10 +315,138 @@ h3 {
 }
 
 .source-section,
+.hofdi-section,
 .timeline-section,
 .collection-section,
 .harvest-section {
   margin: 48px 0;
+}
+
+.hofdi-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(340px, 0.84fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.hofdi-visual,
+.hofdi-panel,
+.hofdi-workstream {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(23, 25, 31, 0.06);
+}
+
+.hofdi-visual {
+  display: grid;
+  margin: 0;
+  overflow: hidden;
+}
+
+.hofdi-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 760;
+  object-fit: cover;
+  background: #eef0f4;
+}
+
+.hofdi-visual figcaption {
+  border-top: 1px solid var(--line);
+  padding: 13px 16px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.hofdi-panel {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 18px;
+}
+
+.hofdi-panel h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+}
+
+.hofdi-sessions {
+  display: grid;
+  gap: 10px;
+}
+
+.hofdi-session {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  background: #fbfbf8;
+}
+
+.hofdi-session span {
+  color: var(--red);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hofdi-session h4 {
+  margin: 4px 0 0;
+  font-size: 1.03rem;
+  line-height: 1.15;
+}
+
+.hofdi-session p,
+.hofdi-workstream p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.hofdi-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hofdi-link-row a,
+.source-missing {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--white);
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+}
+
+.source-missing {
+  background: #eef0f4;
+  color: var(--muted);
+}
+
+.hofdi-workstreams {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.hofdi-workstream {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 190px;
+  padding: 18px;
+  border-top: 4px solid var(--blue);
 }
 
 .source-list {
@@ -468,8 +609,10 @@ footer {
 @media (max-width: 980px) {
   .intro-band,
   .filter-grid,
+  .hofdi-grid,
   .source-card,
   .timeline-item,
+  .hofdi-workstreams,
   .collection-map {
     grid-template-columns: 1fr;
   }

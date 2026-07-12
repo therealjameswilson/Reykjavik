@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Hofdi House Reykjavik session map</title>
+  <desc id="desc">A source-linked visual map of the Reykjavik Summit sessions at Hofdi House on October 11 and 12, 1986.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f4f5f1"/>
+      <stop offset="1" stop-color="#e7ebef"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#17191f" flood-opacity=".16"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="760" fill="url(#sky)"/>
+  <path d="M0 608 C145 560 260 594 420 570 C575 548 676 498 828 520 C990 543 1090 592 1200 558 L1200 760 L0 760 Z" fill="#d9e0dc"/>
+  <path d="M0 654 C164 626 300 652 462 629 C650 603 752 578 950 606 C1060 622 1140 634 1200 620 L1200 760 L0 760 Z" fill="#c7d3ce"/>
+
+  <g filter="url(#shadow)">
+    <path d="M312 276 L600 106 L888 276 L850 276 L850 610 L350 610 L350 276 Z" fill="#ffffff" stroke="#23252b" stroke-width="5"/>
+    <path d="M300 286 L600 110 L900 286" fill="none" stroke="#8d2f22" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M377 332 H823 V604 H377 Z" fill="#f8f8f5" stroke="#d8dbe2" stroke-width="4"/>
+    <path d="M430 374 H565 V492 H430 Z" fill="#eef2f0" stroke="#bfc8c2" stroke-width="3"/>
+    <path d="M635 374 H770 V492 H635 Z" fill="#eef2f0" stroke="#bfc8c2" stroke-width="3"/>
+    <path d="M565 374 H635 V604 H565 Z" fill="#f3eee8" stroke="#d8d0c6" stroke-width="3"/>
+    <path d="M472 292 H548 V348 H472 ZM652 292 H728 V348 H652 Z" fill="#dfe9ef" stroke="#8aa2b4" stroke-width="3"/>
+    <path d="M478 400 H520 M478 428 H520 M682 400 H724 M682 428 H724" stroke="#7892a6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M575 564 H625 V610 H575 Z" fill="#d5b16a" stroke="#8d6c24" stroke-width="3"/>
+    <circle cx="600" cy="438" r="52" fill="#ffffff" stroke="#8d2f22" stroke-width="5"/>
+    <path d="M562 438 H638 M600 400 V476" stroke="#8d2f22" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif" fill="#17191f">
+    <text x="64" y="80" font-size="24" font-weight="800" fill="#8d2f22" letter-spacing="3">HOFDI HOUSE</text>
+    <text x="64" y="125" font-size="52" font-weight="800">Reykjavik Summit Visual Map</text>
+    <text x="66" y="164" font-size="22" fill="#4c5563">October 11-12, 1986 source-linked session sequence</text>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(62 226)">
+      <rect width="262" height="96" rx="8" fill="#ffffff" stroke="#d8dbe2" stroke-width="3"/>
+      <text x="20" y="30" font-size="18" font-weight="800" fill="#8d2f22">OCT 11 MORNING</text>
+      <text x="20" y="58" font-size="21" font-weight="700" fill="#17191f">Leader Session I</text>
+      <text x="20" y="82" font-size="15" fill="#5d6472">Opening agenda and proposals</text>
+    </g>
+    <g transform="translate(62 342)">
+      <rect width="262" height="96" rx="8" fill="#ffffff" stroke="#d8dbe2" stroke-width="3"/>
+      <text x="20" y="30" font-size="18" font-weight="800" fill="#8d2f22">OCT 11 AFTERNOON</text>
+      <text x="20" y="58" font-size="21" font-weight="700" fill="#17191f">Leader Session II</text>
+      <text x="20" y="82" font-size="15" fill="#5d6472">Arms-control trade space</text>
+    </g>
+    <g transform="translate(438 636)">
+      <rect width="324" height="78" rx="8" fill="#23252b"/>
+      <text x="24" y="32" font-size="18" font-weight="800" fill="#f6d78d">OVERNIGHT</text>
+      <text x="24" y="58" font-size="18" font-weight="700" fill="#ffffff">Working groups draft the deal space</text>
+    </g>
+    <g transform="translate(876 226)">
+      <rect width="262" height="96" rx="8" fill="#ffffff" stroke="#d8dbe2" stroke-width="3"/>
+      <text x="20" y="30" font-size="18" font-weight="800" fill="#8d2f22">OCT 12 MORNING</text>
+      <text x="20" y="58" font-size="21" font-weight="700" fill="#17191f">Leader Session III</text>
+      <text x="20" y="82" font-size="15" fill="#5d6472">Near-agreement and SDI pressure</text>
+    </g>
+    <g transform="translate(876 342)">
+      <rect width="262" height="96" rx="8" fill="#ffffff" stroke="#d8dbe2" stroke-width="3"/>
+      <text x="20" y="30" font-size="18" font-weight="800" fill="#8d2f22">OCT 12 AFTERNOON</text>
+      <text x="20" y="58" font-size="21" font-weight="700" fill="#17191f">Final Leader Session</text>
+      <text x="20" y="82" font-size="15" fill="#5d6472">ABM/SDI dispute closes summit</text>
+    </g>
+  </g>
+
+  <g fill="none" stroke="#315d8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M324 274 C382 256 424 246 480 246"/>
+    <path d="M324 390 C382 408 424 420 480 420"/>
+    <path d="M720 246 C780 246 820 256 876 274"/>
+    <path d="M720 420 C780 420 820 408 876 390"/>
+    <path d="M600 564 V636"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif" fill="#17191f">
+    <text x="430" y="535" font-size="17" font-weight="800">U.S. records</text>
+    <text x="636" y="535" font-size="17" font-weight="800">Soviet records</text>
+    <text x="431" y="560" font-size="14" fill="#5d6472">FRUS session spine</text>
+    <text x="636" y="560" font-size="14" fill="#5d6472">Russian transcripts</text>
+  </g>
+</svg>
