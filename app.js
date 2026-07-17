@@ -181,6 +181,15 @@ const hofdiPhotos = [
   }
 ];
 
+function isReaganLibraryPhotoUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && /(^|\.)reaganlibrary\.gov$/i.test(url.hostname);
+  } catch (error) {
+    return false;
+  }
+}
+
 function unique(values) {
   return [...new Set(values)].sort((a, b) => a.localeCompare(b));
 }
@@ -441,24 +450,26 @@ function renderNegotiators() {
   );
 
   els.hofdiPhotos.replaceChildren(
-    ...hofdiPhotos.map((photo) => {
-      const card = document.createElement("article");
-      card.className = "photo-card";
-      card.innerHTML = `
-        <a href="${escapeAttribute(sourceIndex.get(photo.source)?.url || photo.src)}" target="_blank" rel="noreferrer">
-          <img src="${escapeAttribute(photo.src)}" alt="${escapeAttribute(photo.caption)}" loading="lazy">
-        </a>
-        <div>
-          <span>${escapeHtml(photo.code)} / ${escapeHtml(photo.date)}</span>
-          <h3>${escapeHtml(photo.title)}</h3>
-          <p>${escapeHtml(photo.caption)}</p>
-          <div class="photo-tags">
-            ${photo.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+    ...hofdiPhotos
+      .filter((photo) => isReaganLibraryPhotoUrl(photo.src))
+      .map((photo) => {
+        const card = document.createElement("article");
+        card.className = "photo-card";
+        card.innerHTML = `
+          <a href="${escapeAttribute(sourceIndex.get(photo.source)?.url || photo.src)}" target="_blank" rel="noreferrer">
+            <img src="${escapeAttribute(photo.src)}" alt="${escapeAttribute(photo.caption)}" loading="lazy">
+          </a>
+          <div>
+            <span>${escapeHtml(photo.code)} / ${escapeHtml(photo.date)}</span>
+            <h3>${escapeHtml(photo.title)}</h3>
+            <p>${escapeHtml(photo.caption)}</p>
+            <div class="photo-tags">
+              ${photo.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+            </div>
           </div>
-        </div>
-      `;
-      return card;
-    })
+        `;
+        return card;
+      })
   );
 }
 

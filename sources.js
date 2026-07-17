@@ -3614,19 +3614,6 @@ window.REYKJAVIK_SOURCES = [
     summary: "Archival video page for Reagan's Reykjavik summit footage."
   },
   {
-    id: "commons-reykjavik",
-    title: "Wikimedia Commons category: 1986 Reykjavik summit media",
-    date: "1986-10-11",
-    phase: "Media",
-    side: "Bilateral",
-    priority: "Lead",
-    type: "media collection",
-    repository: "Wikimedia Commons",
-    collection: "1986 Reykjavik summit",
-    url: "https://commons.wikimedia.org/wiki/Category:1986_Reykjav%C3%ADk_summit",
-    summary: "Photographs and video files, many sourced to NARA, DPLA, and Reagan Library records."
-  },
-  {
     id: "thatcher-143886",
     title: "UK Paris telegram on French reactions before Reykjavik",
     date: "1986-10-03",
