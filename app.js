@@ -40,36 +40,32 @@ const hofdiSessions = [
     label: "Session I",
     time: "Oct 11 morning",
     theme: "Opening positions, agenda, and first package proposals.",
-    us: "frus-v-d301",
-    soviet: "nsa203-doc10"
+    records: ["frus-v-d301"]
   },
   {
     label: "Session II",
     time: "Oct 11 afternoon",
     theme: "Arms control moves to the center of the summit.",
-    us: "frus-v-d302",
-    soviet: "nsa203-doc12"
+    records: ["frus-v-d302"]
   },
   {
     label: "Session III",
     time: "Oct 12 morning",
     theme: "Near-agreement on reductions, with SDI and ABM terms tightening.",
-    us: "frus-v-d306",
-    soviet: "nsa203-doc14"
+    records: ["frus-v-d306", "frus-xi-d162"]
   },
   {
     label: "Final Session",
     time: "Oct 12 afternoon",
     theme: "The summit closes over the laboratory-testing and SDI dispute.",
-    us: "frus-v-d308",
-    soviet: "nsa203-doc16"
+    records: ["frus-v-d308", "frus-xi-d164", "frus-xi-d165"]
   }
 ];
 
 const hofdiWorkstreams = [
   {
     label: "Overnight Arms-Control Work",
-    ids: ["frus-xi-d159", "frus-xi-d160", "nsa203-doc17"],
+    ids: ["frus-xi-d159", "frus-xi-d160"],
     note: "Nitze, Akhromeyev, Hill, and the military experts worked through the overnight negotiating text."
   },
   {
@@ -103,8 +99,8 @@ const principalPeople = [
     name: "Mikhail Gorbachev",
     side: "Soviet",
     role: "General Secretary",
-    note: "Soviet leader-channel principal across the Hofdi sessions and transcripts.",
-    ids: ["nsa203-doc10", "nsa203-doc12", "nsa203-doc14", "nsa203-doc16"]
+    note: "Soviet leader-channel principal across the official Hofdi session records.",
+    ids: ["frus-v-d301", "frus-v-d302", "frus-v-d306", "frus-v-d308"]
   },
   {
     name: "Eduard Shevardnadze",
@@ -120,8 +116,8 @@ const negotiatorConnections = [
     label: "Leader Channel",
     us: "Reagan",
     soviet: "Gorbachev",
-    note: "The main bilateral record: four Hofdi leader sessions, with U.S. FRUS records and Russian transcript counterparts.",
-    ids: ["frus-v-d301", "frus-v-d302", "frus-v-d306", "frus-v-d308", "nsa203-doc10", "nsa203-doc12", "nsa203-doc14", "nsa203-doc16"]
+    note: "The main bilateral record: four Hofdi leader sessions preserved in the official FRUS sequence.",
+    ids: ["frus-v-d301", "frus-v-d302", "frus-v-d306", "frus-v-d308"]
   },
   {
     label: "Foreign-Minister Channel",
@@ -135,7 +131,7 @@ const negotiatorConnections = [
     us: "Nitze / Hill / Kampelman",
     soviet: "Akhromeyev / Soviet military team",
     note: "The overnight lane where military and arms-control experts converted the leader package into text.",
-    ids: ["frus-xi-d159", "frus-xi-d160", "nsa203-doc17"]
+    ids: ["frus-xi-d159", "frus-xi-d160"]
   },
   {
     label: "Room and Record Support",
@@ -376,8 +372,7 @@ function renderHofdi() {
           <p>${escapeHtml(session.theme)}</p>
         </div>
         <div class="hofdi-link-row">
-          ${sourceLink(session.us, "U.S. record")}
-          ${sourceLink(session.soviet, "Russian transcript")}
+          ${session.records.map((id) => sourceLink(id, compactSourceLabel(id))).join("")}
         </div>
       `;
       return block;
@@ -484,7 +479,7 @@ function compactSourceLabel(id) {
 function collectionSummary(label) {
   const summaries = {
     "U.S. official records": "FRUS/history.state.gov records first; Reagan Library, CIA, and White House records only when they add non-FRUS material.",
-    "Soviet-side records": "UN-circulated Soviet statements, FBIS/Russian transcripts, Politburo notes, and Chernyaev-linked records.",
+    "Soviet-side records": "FRUS Soviet correspondence and UN-circulated statements, press conferences, speeches, and diplomatic letters.",
     "Bilateral meeting records": "Session records where the U.S. and Soviet records can be compared or used together.",
     "Archive leads and media": "Finding aids, collection portals, videos, and visual material for deeper harvesting."
   };
