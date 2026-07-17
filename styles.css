@@ -631,7 +631,7 @@ h3 {
   overflow: hidden;
 }
 
-.photo-card a {
+.photo-media {
   display: block;
   background: var(--charcoal);
 }
@@ -658,6 +658,13 @@ h3 {
   margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.photo-card .photo-source-link {
+  justify-self: start;
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 800;
 }
 
 .photo-tags {
@@ -811,21 +818,6 @@ h3 {
 .collection-block p {
   margin: 8px 0 0;
   color: var(--muted);
-}
-
-.harvest-list {
-  margin: 0;
-  padding: 0;
-  list-style-position: inside;
-  display: grid;
-  gap: 1px;
-  border: 1px solid var(--line);
-  background: var(--line);
-}
-
-.harvest-list li {
-  background: var(--white);
-  padding: 16px;
 }
 
 footer {

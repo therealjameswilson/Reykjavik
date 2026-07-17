@@ -1,4 +1,19 @@
-const sources = window.REYKJAVIK_SOURCES;
+function isHistoryStateDocumentUrl(value) {
+  try {
+    const url = new URL(value);
+    return (
+      url.protocol === "https:" &&
+      url.hostname === "history.state.gov" &&
+      /^\/historicaldocuments\/frus[^/]+\/d\d+$/i.test(url.pathname) &&
+      !url.search &&
+      !url.hash
+    );
+  } catch (error) {
+    return false;
+  }
+}
+
+const sources = window.REYKJAVIK_SOURCES.filter((source) => isHistoryStateDocumentUrl(source.url));
 
 const state = {
   search: "",
@@ -13,7 +28,7 @@ const priorityOrder = { Core: 0, Context: 1, Lead: 2 };
 const els = {
   total: document.getElementById("stat-total"),
   core: document.getElementById("stat-core"),
-  repos: document.getElementById("stat-repos"),
+  volumes: document.getElementById("stat-volumes"),
   search: document.getElementById("source-search"),
   priorityFilters: document.getElementById("priority-filters"),
   phaseFilters: document.getElementById("phase-filters"),
@@ -74,9 +89,9 @@ const hofdiWorkstreams = [
     note: "Separate working-group records track regional, bilateral, and human-rights issues during the same Hofdi interval."
   },
   {
-    label: "Media and Site Evidence",
-    ids: ["reagan-photo-gorbachev-summits", "reagan-whtv-027-gorbachev-greeting"],
-    note: "The Reagan Library photo and video records anchor the physical setting and arrival sequence at Hofdi House."
+    label: "Foreign-Minister Drafting",
+    ids: ["frus-v-d307", "frus-xi-d163"],
+    note: "Shultz, Shevardnadze, and the arms-control teams translated the leader-level discussion into a follow-up record."
   }
 ];
 
@@ -138,7 +153,7 @@ const negotiatorConnections = [
     us: "Matlock / U.S. interpreters",
     soviet: "Soviet interpreters",
     note: "The visible support layer in the Hofdi photo run: interpreters and note-takers made the leader-channel comparison possible.",
-    ids: ["reagan-photo-gorbachev-summits", "reagan-whtv-027-gorbachev-greeting"]
+    ids: ["frus-v-d301", "frus-v-d302"]
   }
 ];
 
@@ -150,7 +165,7 @@ const hofdiPhotos = [
     title: "Four-principal Hofdi table",
     caption: "Reagan and Gorbachev meet at Hofdi House with George Shultz, Eduard Shevardnadze, Jack Matlock, and Dmitry Zarechnak.",
     tags: ["Reagan", "Shultz", "Gorbachev", "Shevardnadze"],
-    source: "reagan-photo-gorbachev-summits"
+    source: "frus-v-d301"
   },
   {
     code: "C37408-16A",
@@ -159,7 +174,7 @@ const hofdiPhotos = [
     title: "Leader meeting with interpreter support",
     caption: "Reagan and Gorbachev meet at Hofdi House with Jack Matlock and Dmitry Zarechnak.",
     tags: ["Reagan", "Gorbachev", "Matlock"],
-    source: "reagan-photo-gorbachev-summits"
+    source: "frus-v-d301"
   },
   {
     code: "C37418-7",
@@ -168,7 +183,7 @@ const hofdiPhotos = [
     title: "U.S. staff briefing inside Hofdi",
     caption: "Reagan briefs with Ken Adelman, George Shultz, Donald Regan, Robert Linhard, Paul Nitze, and John Poindexter.",
     tags: ["Reagan", "Shultz", "Nitze", "Poindexter"],
-    source: "reagan-photo-gorbachev-summits"
+    source: "frus-v-d306"
   },
   {
     code: "C37435-18",
@@ -177,7 +192,7 @@ const hofdiPhotos = [
     title: "Second-day Hofdi greeting",
     caption: "Reagan greets Gorbachev at Hofdi House before the final day of the Reykjavik Summit.",
     tags: ["Reagan", "Gorbachev"],
-    source: "reagan-photo-gorbachev-summits"
+    source: "frus-v-d306"
   }
 ];
 
@@ -196,6 +211,18 @@ function unique(values) {
 
 function normalize(value) {
   return String(value || "").toLowerCase();
+}
+
+function phaseLabel(value) {
+  return value === "Road" ? "Lead-up" : value;
+}
+
+function frusVolumeId(source) {
+  try {
+    return new URL(source.url).pathname.split("/")[2] || "";
+  } catch (error) {
+    return "";
+  }
 }
 
 function sourceHaystack(source) {
@@ -223,7 +250,10 @@ function makeButton(label, active, onClick) {
 }
 
 function renderFilters() {
-  const priorities = ["All", "Core", "Context", "Lead"];
+  const priorities = [
+    "All",
+    ...["Core", "Context", "Lead"].filter((priority) => sources.some((source) => source.priority === priority))
+  ];
   const phases = ["All", ...unique(sources.map((source) => source.phase))];
   const sides = ["All", ...unique(sources.map((source) => source.side))];
 
@@ -235,7 +265,7 @@ function renderFilters() {
 function fillFilter(container, values, key) {
   container.replaceChildren(
     ...values.map((value) =>
-      makeButton(value, state[key] === value, () => {
+      makeButton(key === "phase" ? phaseLabel(value) : value, state[key] === value, () => {
         state[key] = value;
         render();
       })
@@ -251,8 +281,8 @@ function filteredSources() {
     .filter((source) => state.side === "All" || source.side === state.side)
     .filter((source) => !query || normalize(sourceHaystack(source)).includes(query))
     .sort((a, b) => {
-      if (state.sort === "repository") {
-        return a.repository.localeCompare(b.repository) || a.date.localeCompare(b.date);
+      if (state.sort === "volume") {
+        return a.url.localeCompare(b.url, undefined, { numeric: true }) || a.date.localeCompare(b.date);
       }
       if (state.sort === "priority") {
         return priorityOrder[a.priority] - priorityOrder[b.priority] || a.date.localeCompare(b.date);
@@ -264,11 +294,11 @@ function filteredSources() {
 function renderStats() {
   els.total.textContent = sources.length;
   els.core.textContent = sources.filter((source) => source.priority === "Core").length;
-  els.repos.textContent = unique(sources.map((source) => source.repository)).length;
+  els.volumes.textContent = unique(sources.map(frusVolumeId)).length;
 }
 
 function renderSources(items) {
-  els.count.textContent = `${items.length} source${items.length === 1 ? "" : "s"} shown`;
+  els.count.textContent = `${items.length} document${items.length === 1 ? "" : "s"} shown`;
   els.list.replaceChildren(...items.map(sourceCard));
 }
 
@@ -292,7 +322,7 @@ function sourceCard(source) {
     <p>${escapeHtml(source.summary)}</p>
     <div class="pill-row">
       <span class="pill">${escapeHtml(source.priority)}</span>
-      <span class="pill">${escapeHtml(source.phase)}</span>
+      <span class="pill">${escapeHtml(phaseLabel(source.phase))}</span>
       <span class="pill">${escapeHtml(source.side)}</span>
       <span class="pill">${escapeHtml(source.type)}</span>
     </div>
@@ -304,7 +334,7 @@ function sourceCard(source) {
   link.href = source.url;
   link.target = "_blank";
   link.rel = "noreferrer";
-  link.textContent = "Open";
+  link.textContent = "Open FRUS";
 
   const copy = document.createElement("button");
   copy.type = "button";
@@ -335,9 +365,9 @@ function renderTimeline() {
         <time datetime="${escapeHtml(source.date)}">${escapeHtml(source.date)}</time>
         <div>
           <h3>${escapeHtml(source.title)}</h3>
-          <p>${escapeHtml(source.repository)} - ${escapeHtml(source.collection)}</p>
+          <p>${escapeHtml(source.collection)}</p>
         </div>
-        <a href="${escapeAttribute(source.url)}" target="_blank" rel="noreferrer">Open source</a>
+        <a href="${escapeAttribute(source.url)}" target="_blank" rel="noreferrer">Open FRUS document</a>
       `;
       return item;
     })
@@ -346,21 +376,36 @@ function renderTimeline() {
 
 function renderCollections() {
   const groups = [
-    ["U.S. official records", (source) => source.side === "US"],
-    ["Soviet-side records", (source) => source.side === "Soviet"],
-    ["Bilateral meeting records", (source) => source.side === "Bilateral"],
-    ["Archive leads and media", (source) => source.priority === "Lead" || source.phase === "Media"]
+    {
+      label: "Lead-up",
+      count: sources.filter((source) => source.phase === "Road" || source.phase === "Public").length,
+      summary: "Preparation, exchanges, intelligence, and policy records before the October 11 opening session."
+    },
+    {
+      label: "Summit",
+      count: sources.filter((source) => source.phase === "Summit").length,
+      summary: "Leader sessions, foreign-minister discussions, and the overnight arms-control working record."
+    },
+    {
+      label: "Aftermath",
+      count: sources.filter((source) => source.phase === "Aftermath").length,
+      summary: "Immediate assessments and the diplomatic and arms-control sequence that followed Hofdi."
+    },
+    {
+      label: "FRUS volumes",
+      count: unique(sources.map(frusVolumeId)).length,
+      summary: "Volumes V, VI, XI, and XLIV Part 1, with each record linked to its official document page."
+    }
   ];
 
   els.collections.replaceChildren(
-    ...groups.map(([label, predicate]) => {
+    ...groups.map((group) => {
       const block = document.createElement("article");
       block.className = "collection-block";
-      const count = sources.filter(predicate).length;
       block.innerHTML = `
-        <strong>${count}</strong>
-        <h3>${escapeHtml(label)}</h3>
-        <p>${collectionSummary(label)}</p>
+        <strong>${group.count}</strong>
+        <h3>${escapeHtml(group.label)}</h3>
+        <p>${escapeHtml(group.summary)}</p>
       `;
       return block;
     })
@@ -451,14 +496,19 @@ function renderNegotiators() {
 
   els.hofdiPhotos.replaceChildren(
     ...hofdiPhotos
-      .filter((photo) => isReaganLibraryPhotoUrl(photo.src))
+      .filter(
+        (photo) =>
+          isReaganLibraryPhotoUrl(photo.src) &&
+          isHistoryStateDocumentUrl(sourceIndex.get(photo.source)?.url)
+      )
       .map((photo) => {
+        const source = sourceIndex.get(photo.source);
         const card = document.createElement("article");
         card.className = "photo-card";
         card.innerHTML = `
-          <a href="${escapeAttribute(sourceIndex.get(photo.source)?.url || photo.src)}" target="_blank" rel="noreferrer">
+          <div class="photo-media">
             <img src="${escapeAttribute(photo.src)}" alt="${escapeAttribute(photo.caption)}" loading="lazy">
-          </a>
+          </div>
           <div>
             <span>${escapeHtml(photo.code)} / ${escapeHtml(photo.date)}</span>
             <h3>${escapeHtml(photo.title)}</h3>
@@ -466,6 +516,7 @@ function renderNegotiators() {
             <div class="photo-tags">
               ${photo.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
             </div>
+            <a class="photo-source-link" href="${escapeAttribute(source.url)}" target="_blank" rel="noreferrer">Related FRUS document</a>
           </div>
         `;
         return card;
@@ -475,7 +526,7 @@ function renderNegotiators() {
 
 function sourceLink(id, label) {
   const source = sourceIndex.get(id);
-  if (!source) {
+  if (!source || !isHistoryStateDocumentUrl(source.url)) {
     return `<span class="source-missing">${escapeHtml(label)}</span>`;
   }
   return `<a href="${escapeAttribute(source.url)}" target="_blank" rel="noreferrer" title="${escapeAttribute(source.title)}">${escapeHtml(label)}</a>`;
@@ -485,16 +536,6 @@ function compactSourceLabel(id) {
   const source = sourceIndex.get(id);
   if (!source) return "Source";
   return source.collection.replace("FRUS ", "").replace("Document ", "Doc. ");
-}
-
-function collectionSummary(label) {
-  const summaries = {
-    "U.S. official records": "FRUS/history.state.gov records first; Reagan Library, CIA, and White House records only when they add non-FRUS material.",
-    "Soviet-side records": "FRUS Soviet correspondence and UN-circulated statements, press conferences, speeches, and diplomatic letters.",
-    "Bilateral meeting records": "Session records where the U.S. and Soviet records can be compared or used together.",
-    "Archive leads and media": "Finding aids, collection portals, videos, and visual material for deeper harvesting."
-  };
-  return summaries[label];
 }
 
 function formatCitation(source) {
@@ -511,7 +552,7 @@ function exportCsv(items) {
   const blob = new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = "reykjavik-primary-sources.csv";
+  link.download = "reykjavik-frus-documents.csv";
   link.click();
   URL.revokeObjectURL(link.href);
 }

@@ -1,6 +1,6 @@
-# Reykjavik 1986 Primary Source Workbench
+# Reykjavik 1986 FRUS Document Workbench
 
-Static source-register site for public primary sources on Reagan and Gorbachev's October 1986 Reykjavik meeting.
+Static document-register site for official FRUS records on Reagan and Gorbachev's October 1986 Reykjavik meeting.
 
 ## Files
 
@@ -19,4 +19,4 @@ Then open `http://localhost:4173`.
 
 ## Coverage Note
 
-The register includes public online primary sources and finding-aid leads. When a document is reproduced in FRUS, the visible card defers to the history.state.gov record rather than listing duplicate repository copies as separate sources. The site does not claim that every undigitized folder in the Reagan Library, TNA, Gorbachev Foundation, RGANI, GARF, Library of Congress, or State Department holdings has been harvested yet.
+The active register includes only individual FRUS document pages on `history.state.gov`. It covers the lead-up, summit, and aftermath through 113 documents from Volumes V, VI, XI, and XLIV Part 1. Reagan Library photographs remain as unlinked image assets; every external record link points to an official FRUS document.

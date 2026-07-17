@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reykjavik 1986 Primary Source Workbench</title>
-    <meta name="description" content="A source-first website for primary records on Reagan and Gorbachev at Reykjavik in October 1986.">
-    <link rel="stylesheet" href="styles.css?v=20260712-negotiator-photos">
+    <title>Reykjavik 1986 FRUS Document Workbench</title>
+    <meta name="description" content="Official FRUS documents on the lead-up to, meetings at, and aftermath of the October 1986 Reykjavik Summit.">
+    <link rel="stylesheet" href="styles.css?v=20260717-frus-only-links">
   </head>
   <body>
     <header class="site-header">
@@ -16,8 +16,7 @@
           <a href="#negotiators">Negotiators</a>
           <a href="#sources">Sources</a>
           <a href="#timeline">Timeline</a>
-          <a href="#collections">Collections</a>
-          <a href="#harvest">Harvest</a>
+          <a href="#collections">Coverage</a>
         </nav>
       </div>
     </header>
@@ -25,27 +24,26 @@
     <main id="top">
       <section class="intro-band" aria-labelledby="page-title">
         <div class="intro-copy">
-          <p class="eyebrow">Primary source register</p>
+          <p class="eyebrow">Official FRUS document register</p>
           <h1 id="page-title">Reagan and Gorbachev at Reykjavik</h1>
           <p class="lede">
-            A working website for the known public primary-source corpus around the
-            October 11-12, 1986 Reykjavik meeting: U.S. records, Soviet-side records,
-            public statements, allied reactions, intelligence/prep items, and archive
-            leads for material that is cited but not fully digitized. When a source is
-            reproduced in FRUS, the visible record defers to history.state.gov.
+            A focused documentary edition of the lead-up to, meetings at, and aftermath
+            of the October 11-12, 1986 Reykjavik Summit. The register draws from four
+            published Foreign Relations volumes, and every external record link opens
+            an individual FRUS document on history.state.gov.
           </p>
           <div class="stat-row" aria-label="Source statistics">
             <div>
               <strong id="stat-total">0</strong>
-              <span>sources</span>
+              <span>documents</span>
             </div>
             <div>
               <strong id="stat-core">0</strong>
               <span>core records</span>
             </div>
             <div>
-              <strong id="stat-repos">0</strong>
-              <span>repositories</span>
+              <strong id="stat-volumes">0</strong>
+              <span>FRUS volumes</span>
             </div>
           </div>
         </div>
@@ -63,13 +61,13 @@
             <p class="eyebrow">Hofdi House</p>
             <h2 id="hofdi-title">Summit Visualizations</h2>
           </div>
-          <a class="section-link" href="https://www.reaganlibrary.gov/archives/audiovisual/white-house-photo-collection-galleries/summits-mikhail-gorbachev" target="_blank" rel="noreferrer">Photo run</a>
+          <a class="section-link" href="https://history.state.gov/historicaldocuments/frus1981-88v05/d301" target="_blank" rel="noreferrer">Session I record</a>
         </div>
 
         <div class="hofdi-grid">
           <figure class="hofdi-visual">
             <img src="assets/hofdi/hofdi-session-map.svg" alt="Source-linked visual map of Hofdi House summit sessions.">
-            <figcaption>Session map rebuilt from the FRUS session records and Reagan Library media leads.</figcaption>
+            <figcaption>Session map rebuilt from the official FRUS records of the Hofdi House meetings.</figcaption>
           </figure>
 
           <div class="hofdi-panel">
@@ -78,7 +76,7 @@
           </div>
         </div>
 
-        <div id="hofdi-workstreams" class="hofdi-workstreams" aria-label="Hofdi working groups and media links"></div>
+        <div id="hofdi-workstreams" class="hofdi-workstreams" aria-label="Hofdi working groups and FRUS document links"></div>
 
         <section id="negotiators" class="negotiator-section" aria-labelledby="negotiators-title">
           <div class="section-heading">
@@ -86,7 +84,7 @@
               <p class="eyebrow">People and evidence</p>
               <h2 id="negotiators-title">Negotiator Connections</h2>
             </div>
-            <a class="section-link" href="https://www.reaganlibrary.gov/archives/audiovisual/white-house-photo-collection-galleries/summits-mikhail-gorbachev" target="_blank" rel="noreferrer">Photo gallery</a>
+            <a class="section-link" href="https://history.state.gov/historicaldocuments/frus1981-88v05/d307" target="_blank" rel="noreferrer">Sunday drafting record</a>
           </div>
 
           <div class="negotiator-grid">
@@ -110,8 +108,8 @@
 
       <section class="control-band" aria-label="Source filters">
         <div class="search-shell">
-          <label for="source-search">Search sources</label>
-          <input id="source-search" type="search" autocomplete="off" placeholder="Search title, repository, person, theme">
+          <label for="source-search">Search documents</label>
+          <input id="source-search" type="search" autocomplete="off" placeholder="Search title, document, person, theme">
         </div>
 
         <div class="filter-grid">
@@ -131,7 +129,7 @@
             <span>Sort</span>
             <select id="sort-select">
               <option value="date">Date</option>
-              <option value="repository">Repository</option>
+              <option value="volume">FRUS volume</option>
               <option value="priority">Priority</option>
             </select>
           </div>
@@ -141,14 +139,14 @@
           <button id="reset-filters" type="button">Reset</button>
           <button id="copy-links" type="button">Copy links</button>
           <button id="export-csv" type="button">Export CSV</button>
-          <span id="result-count" role="status" aria-live="polite">0 sources shown</span>
+          <span id="result-count" role="status" aria-live="polite">0 documents shown</span>
         </div>
       </section>
 
       <section id="sources" class="source-section" aria-labelledby="sources-title">
         <div class="section-heading">
           <p class="eyebrow">Register</p>
-          <h2 id="sources-title">Source Cards</h2>
+          <h2 id="sources-title">FRUS Documents</h2>
         </div>
         <div id="source-list" class="source-list"></div>
       </section>
@@ -163,34 +161,19 @@
 
       <section id="collections" class="collection-section" aria-labelledby="collections-title">
         <div class="section-heading">
-          <p class="eyebrow">Coverage</p>
-          <h2 id="collections-title">Collection Map</h2>
+          <p class="eyebrow">Document scope</p>
+          <h2 id="collections-title">FRUS Coverage</h2>
         </div>
         <div id="collection-map" class="collection-map"></div>
       </section>
 
-      <section id="harvest" class="harvest-section" aria-labelledby="harvest-title">
-        <div class="section-heading">
-          <p class="eyebrow">Next archive pass</p>
-          <h2 id="harvest-title">Harvest Queue</h2>
-        </div>
-        <ol class="harvest-list">
-          <li>Continue checking for direct PDFs behind the WHORM, Correspondence, Counsel, Intergovernmental Affairs, Legislative Affairs, Staff Secretary, Records Management, Press Secretary, Public Affairs, Social Affairs, Media Relations, Presidential Briefing Papers, Public Liaison, NSC staff, Chron File, and Presidential Speeches leads now mapped.</li>
-          <li>Keep FRUS XLIV, Part 1 as the canonical source for the post-Reykjavik SDI, ABM, and ballistic-missile follow-up sequence now added from history.state.gov.</li>
-          <li>Pull any remaining Reagan Library topic-guide rows not yet represented, especially secondary speechwriting, travel, public-affairs, and agency record blocks that surface newly digitized folders.</li>
-          <li>Finish the Thatcher/TNA PREM19/1759 selected-document edges outside the October 3-30 core run, especially the September approach-march records and November follow-up items.</li>
-          <li>Check whether Gorbachev Foundation, RGANI, GARF, or Library of Congress Volkogonov originals have digitized versions.</li>
-          <li>Treat Reagan Library and Thatcher-hosted copies as provenance leads when FRUS reproduces the same document.</li>
-          <li>Add full-text excerpts only after rights and source-edition status are checked; the present build favors links, provenance, and concise summaries.</li>
-        </ol>
-      </section>
     </main>
 
     <footer>
-      <p>Built as a source-first research surface. Public online records are linked directly; archive leads are flagged when they are finding aids or folder trails.</p>
+      <p>A focused Reykjavik reading set drawn from official Foreign Relations of the United States document pages.</p>
     </footer>
 
-    <script src="sources.js?v=20260717-reagan-library-photos"></script>
-    <script src="app.js?v=20260717-reagan-library-photos"></script>
+    <script src="sources.js?v=20260717-frus-only-links"></script>
+    <script src="app.js?v=20260717-frus-only-links"></script>
   </body>
 </html>
